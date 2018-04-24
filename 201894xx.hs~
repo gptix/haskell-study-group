@@ -1,0 +1,102 @@
+--data Bool = False | True
+
+data Week = Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
+
+
+instance Eq Week where
+  Monday	==	Monday		= True
+  Tuesday 	==	Tuesday 	= True
+  Wednesday 	==	Wednesday	= True
+  Thursday 	==	Thursday 	= True
+  Friday	==	Friday		= True
+  Saturday 	==	Saturday 	= True
+  Sunday	==	Sunday		= True
+  _		==	_		= False
+
+instance Ord Week where
+  compare d1 d2
+    | d1 == d2 = EQ
+--  compare Monday Monday = EQ
+  compare Monday Tuesday = LT
+  compare Monday Wednesday = LT
+  compare Monday Thursday = LT
+  compare Monday Friday = LT
+  compare Monday Saturday = LT
+  compare Monday Sunday = LT
+--  compare Tuesday Monday = GT
+--  compare Tuesday Tuesday = EQ
+  compare Tuesday Wednesday = LT
+  compare Tuesday Thursday = LT
+  compare Tuesday Friday = LT
+  compare Tuesday Saturday = LT
+  compare Tuesday Sunday = LT
+--  compare Wednesday Monday = GT
+--  compare Wednesday Tuesday = GT
+--  compare Wednesday Wednesday = EQ
+  compare Wednesday Thursday = LT
+  compare Wednesday Friday = LT
+  compare Wednesday Saturday = LT
+  compare Wednesday Sunday = LT
+--  compare Thursday Monday = GT
+--  compare Thursday Tuesday = GT
+--  compare Thursday Wednesday = GT
+--  compare Thursday Thursday = EQ
+  compare Thursday Friday = LT
+  compare Thursday Saturday = LT
+  compare Thursday Sunday = LT
+--  compare Friday Monday = GT
+--  compare Friday Tuesday = GT
+--  compare Friday Wednesday = GT
+--  compare Friday Thursday = GT
+--  compare Friday Friday = EQ
+  compare Friday Saturday = LT
+  compare Friday Sunday = LT
+--  compare Saturday Monday = GT
+-- compare Saturday Tuesday = GT
+--  compare Saturday Wednesday = GT
+--  compare Saturday Thursday = GT
+--  compare Saturday Friday = GT
+--  compare Saturday Saturday = EQ
+  compare Saturday Sunday = LT
+--  compare Sunday Monday = GT
+--  compare Sunday Tuesday = GT
+--  compare Sunday Wednesday = GT
+--  compare Sunday Thursday = GT
+--  compare Sunday Friday = GT
+--  compare Sunday Saturday = GT
+--  compare Sunday Sunday = EQ
+  compare _ _ = GT
+
+instance Show Week where
+  show Monday = "Monday"
+  show Tuesday = "Tuesday"
+  show Wednesday = "Wednesday"
+  show Thursday = "Thursday"
+  show Friday = "Friday"
+  show Saturday = "Saturday"
+  show Sunday = "Sunday"
+
+
+instance Enum Week where
+  toEnum :: Week -> Int
+  toEnum Monday    = 1
+  toEnum Tuesday   = 2
+  toEnum Wednesday = 3 
+  toEnum Thursday  = 4
+  toEnum Friday    = 5
+  toEnum Saturday  = 6
+  toEnum Sunday    = 7
+
+  fromEnum :: Int -> Week
+  fromEnum 1 =  Monday
+  fromEnum 2 =  Tuesday
+  fromEnum 3 = Wednesday
+  fromEnum 4 =  Thursday
+  fromEnum 5 =  Friday
+  fromEnum 6 =  Saturday
+  fromEnum 7 =  Sunday
+
+
+instance Bounded Week where
+  minBound = Monday
+  maxBound = Sunday
